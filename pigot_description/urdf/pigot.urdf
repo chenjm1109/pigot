@@ -1,0 +1,739 @@
+<robot
+  name="pigot.SLDASM">
+  <link
+    name="body_link">
+    <inertial>
+      <origin
+        xyz="4.7665E-11 7.8204E-09 9.774E-11"
+        rpy="0 0 0" />
+      <mass
+        value="30" />
+      <inertia
+        ixx="5.6671"
+        ixy="1.783E-10"
+        ixz="-6.3954E-07"
+        iyy="6.359"
+        iyz="2.3499E-06"
+        izz="1.1726" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/body_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/body_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="lf_link_1">
+    <inertial>
+      <origin
+        xyz="-0.050197 1.6657E-09 0.025721"
+        rpy="0 0 0" />
+      <mass
+        value="1.2212" />
+      <inertia
+        ixx="0.0028026"
+        ixy="2.0933E-09"
+        ixz="-1.2935E-09"
+        iyy="0.0029011"
+        iyz="1.0332E-09"
+        izz="0.0016871" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lf_link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lf_link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lf_rot_1"
+    type="prismatic">
+    <origin
+      xyz="0.2 -0.3498 0"
+      rpy="1.5708 6.123E-17 1.5708" />
+    <parent
+      link="body_link" />
+    <child
+      link="lf_link_1" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="lf_link_2">
+    <inertial>
+      <origin
+        xyz="-0.05 -0.1259 -1.1102E-16"
+        rpy="0 0 0" />
+      <mass
+        value="3" />
+      <inertia
+        ixx="0.075548"
+        ixy="1.5411E-17"
+        ixz="-2.3131E-18"
+        iyy="0.011334"
+        iyz="1.4208E-17"
+        izz="0.073111" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lf_link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lf_link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lf_rot_2"
+    type="prismatic">
+    <origin
+      xyz="-0.050197 0 0.1"
+      rpy="0 1.5708 0" />
+    <parent
+      link="lf_link_1" />
+    <child
+      link="lf_link_2" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="lf_link_3">
+    <inertial>
+      <origin
+        xyz="-0.0325 -0.1327 7.0855E-10"
+        rpy="0 0 0" />
+      <mass
+        value="1.667" />
+      <inertia
+        ixx="0.023509"
+        ixy="1.0303E-10"
+        ixz="1.9179E-09"
+        iyy="0.0012382"
+        iyz="1.8529E-10"
+        izz="0.023218" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lf_link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lf_link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lf_rot_3"
+    type="prismatic">
+    <origin
+      xyz="-0.0175 -0.35 0"
+      rpy="0 0 0" />
+    <parent
+      link="lf_link_2" />
+    <child
+      link="lf_link_3" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rf_link_1">
+    <inertial>
+      <origin
+        xyz="-0.0501973789242013 2.01859038854933E-09 0.0257214553494376"
+        rpy="0 0 0" />
+      <mass
+        value="1.22122039953742" />
+      <inertia
+        ixx="0.00280264851524441"
+        ixy="2.10432131143013E-09"
+        ixz="-1.29904915530434E-09"
+        iyy="0.00290113403303396"
+        iyz="1.02677049236743E-09"
+        izz="0.00168708739432298" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rf_link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rf_link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rf_rot_1"
+    type="prismatic">
+    <origin
+      xyz="-0.2 -0.3498 0"
+      rpy="-1.5708 6.123E-17 1.5708" />
+    <parent
+      link="body_link" />
+    <child
+      link="rf_link_1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rf_link_2">
+    <inertial>
+      <origin
+        xyz="-0.05 -0.1259 5.5511E-17"
+        rpy="0 0 0" />
+      <mass
+        value="3" />
+      <inertia
+        ixx="0.075548"
+        ixy="-3.0835E-19"
+        ixz="-1.8605E-18"
+        iyy="0.011334"
+        iyz="-1.7126E-18"
+        izz="0.073111" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rf_link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rf_link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rf_rot_2"
+    type="prismatic">
+    <origin
+      xyz="-0.050197 0 0.1"
+      rpy="3.1416 1.5708 0" />
+    <parent
+      link="rf_link_1" />
+    <child
+      link="rf_link_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rf_link_3">
+    <inertial>
+      <origin
+        xyz="-0.0324999996259642 -0.132703983194415 7.08550385031259E-10"
+        rpy="0 0 0" />
+      <mass
+        value="1.66701751040894" />
+      <inertia
+        ixx="0.0235089233094136"
+        ixy="1.03029131397906E-10"
+        ixz="1.91789220288045E-09"
+        iyy="0.00123815764558874"
+        iyz="1.8529183366096E-10"
+        izz="0.0232179178400685" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rf_link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rf_link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rf_rot_3"
+    type="prismatic">
+    <origin
+      xyz="-0.0175 -0.35 0"
+      rpy="0 0 0" />
+    <parent
+      link="rf_link_2" />
+    <child
+      link="rf_link_3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="lb_link_1">
+    <inertial>
+      <origin
+        xyz="-0.0501973790070806 -1.84989864940849E-09 -0.0257214553622553"
+        rpy="0 0 0" />
+      <mass
+        value="1.2212204231565" />
+      <inertia
+        ixx="0.00280264850596204"
+        ixy="-2.09485373604882E-09"
+        ixz="1.30322551875687E-09"
+        iyy="0.00290113406869404"
+        iyz="1.03028693808902E-09"
+        izz="0.001687087429619" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lb_link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lb_link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lb_rot_1"
+    type="prismatic">
+    <origin
+      xyz="0.2 0.3498 0"
+      rpy="1.5708 -6.123E-17 -1.5708" />
+    <parent
+      link="body_link" />
+    <child
+      link="lb_link_1" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="lb_link_2">
+    <inertial>
+      <origin
+        xyz="-0.05 -0.1259 5.5511E-17"
+        rpy="0 0 0" />
+      <mass
+        value="3" />
+      <inertia
+        ixx="0.075548"
+        ixy="1.74E-17"
+        ixz="-4.366E-18"
+        iyy="0.011334"
+        iyz="1.1064E-17"
+        izz="0.073111" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lb_link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lb_link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lb_rot_2"
+    type="prismatic">
+    <origin
+      xyz="-0.050197 0 -0.1"
+      rpy="3.1416 -1.5708 0" />
+    <parent
+      link="lb_link_1" />
+    <child
+      link="lb_link_2" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="lb_link_3">
+    <inertial>
+      <origin
+        xyz="-0.0324999996259642 -0.132703983194415 7.08550218497805E-10"
+        rpy="0 0 0" />
+      <mass
+        value="1.66701751040894" />
+      <inertia
+        ixx="0.0235089233094136"
+        ixy="1.03029130874093E-10"
+        ixz="1.91789220378426E-09"
+        iyy="0.00123815764558874"
+        iyz="1.85291830414011E-10"
+        izz="0.0232179178400686" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lb_link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/lb_link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lb_rot_3"
+    type="prismatic">
+    <origin
+      xyz="-0.0175 -0.35 0"
+      rpy="0 0 0" />
+    <parent
+      link="lb_link_2" />
+    <child
+      link="lb_link_3" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rb_link_1">
+    <inertial>
+      <origin
+        xyz="-0.050197 -1.7585E-09 -0.025721"
+        rpy="0 0 0" />
+      <mass
+        value="1.2212" />
+      <inertia
+        ixx="0.0028026"
+        ixy="-1.9204E-09"
+        ixz="1.2877E-09"
+        iyy="0.0029011"
+        iyz="1.031E-09"
+        izz="0.0016871" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rb_link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rb_link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rb_rot_1"
+    type="prismatic">
+    <origin
+      xyz="-0.2 0.3498 0"
+      rpy="-1.5708 -6.123E-17 -1.5708" />
+    <parent
+      link="body_link" />
+    <child
+      link="rb_link_1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rb_link_2">
+    <inertial>
+      <origin
+        xyz="-0.05 -0.1259 -1.1102E-16"
+        rpy="0 0 0" />
+      <mass
+        value="3" />
+      <inertia
+        ixx="0.075548"
+        ixy="-3.558E-19"
+        ixz="-1.8983E-18"
+        iyy="0.011334"
+        iyz="-1.8457E-18"
+        izz="0.073111" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rb_link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rb_link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rb_rot_2"
+    type="prismatic">
+    <origin
+      xyz="-0.050197 0 -0.1"
+      rpy="0 -1.5708 0" />
+    <parent
+      link="rb_link_1" />
+    <child
+      link="rb_link_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rb_link_3">
+    <inertial>
+      <origin
+        xyz="-0.0325 -0.1327 7.0855E-10"
+        rpy="0 0 0" />
+      <mass
+        value="1.667" />
+      <inertia
+        ixx="0.023509"
+        ixy="1.0303E-10"
+        ixz="1.9179E-09"
+        iyy="0.0012382"
+        iyz="1.8529E-10"
+        izz="0.023218" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rb_link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot.SLDASM/meshes/rb_link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rb_rot_3"
+    type="prismatic">
+    <origin
+      xyz="-0.0175 -0.35 0"
+      rpy="0 0 0" />
+    <parent
+      link="rb_link_2" />
+    <child
+      link="rb_link_3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-100"
+      upper="100"
+      effort="100000"
+      velocity="1000" />
+  </joint>
+</robot>

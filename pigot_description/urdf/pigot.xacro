@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+
+<robot name="pigot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Import all Gazebo elements -->
+  <xacro:include filename="$(find pigot_description)/urdf/pigot.gazebo" />
+  <xacro:include filename="$(find pigot_description)/urdf/pigot_model.xacro" />
+  <xacro:include filename="$(find pigot_description)/urdf/pigot_trans.xacro" />
+
+</robot>
