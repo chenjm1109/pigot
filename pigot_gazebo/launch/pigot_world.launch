@@ -25,9 +25,11 @@
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
     args="-urdf -model pigot -param robot_description"/>
 
+  <!--node name="pos_pub_node" pkg="pigot_control" type="pos_pub.py" respawn="true"/-->
+
   <!--ros_control rrbot launch file -->
   <include file="$(find pigot_control)/launch/pigot_control.launch" />
 
-  <node name="pos_pub_node" pkg="pigot_control" type="pos_pub.py" respawn="true"/>
+  <node name="rpy_pub_node" pkg="pigot_control" type="rpy_pub.py" respawn="true"/>
 
 </launch>
