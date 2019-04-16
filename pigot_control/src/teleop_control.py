@@ -9,7 +9,6 @@ from geometry_msgs.msg import Twist
 from std_msgs.msg import String
 from std_msgs.msg import Float64
 
-action_msgs = String()
  
 # 全局变量
 pub_action = rospy.Publisher('action_command', String, queue_size=10)
@@ -37,12 +36,10 @@ def keyboardLoop():
         finally :
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
  
-        if (ch == 'w') or (ch == 's') or (ch == 'a') or (ch == 'd') or (ch == 'j')or(ch == 'k'):
-            action_msgs.data = ch
-            rospy.set_param('action_state_param', action_msgs.data)
-
-        elif ch == 'q':
+        if (ch == 'p'):
             exit()
+        else:
+            rospy.set_param('pigot/action_state_param', ch)
         rate.sleep()
  
 if __name__ == '__main__':

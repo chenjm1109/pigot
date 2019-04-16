@@ -51,6 +51,7 @@
       </node>
 
       <node name="rpy_pub_node" pkg="pigot_control" type="rpy_pub.py" respawn="true"/>
+      <!--node name="sbc_node" pkg="pigot_control" type="self_balance_control.py" respawn="true"/-->
     </group>
 
     <group ns="stewart">

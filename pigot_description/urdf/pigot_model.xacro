@@ -3,9 +3,6 @@
 
   <xacro:property name="motor_torque" value="300"/>
   <xacro:property name="motor_vec" value="12.56"/>
-  <xacro:property name="link_1_mass" value="1"/>
-  <xacro:property name="link_2_mass" value="1"/>
-  <xacro:property name="link_3_mass" value="1"/>
   <xacro:property name="motor_damp" value="0.1"/>
   <xacro:property name="motor_fric" value="0"/>
   
@@ -16,14 +13,14 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <mass
-        value="10" />
+        value="5" />
       <inertia
-        ixx="0.06666"
+        ixx="0.0333"
         ixy="0"
         ixz="0"
-        iyy="0.06666"
+        iyy="0.0333"
         iyz="0"
-        izz="0.06666" />
+        izz="0.0333" />
     </inertial>
     <visual>
       <origin
@@ -58,6 +55,17 @@
       link="body_link" />
     <child
       link="box_link" />
+  </joint>
+
+  <link name="dummy">
+    </link>
+
+  <joint name="dummy_joint" type="fixed">
+    <origin
+      xyz="0 0 0.75"
+      rpy="0 0 0" />
+    <parent link="dummy"/>
+    <child link="body_link"/>
   </joint>
 
   <link
@@ -100,6 +108,7 @@
       </geometry>
     </collision>
   </link>
+
   <link
     name="lf_link_1">
     <inertial>
@@ -832,4 +841,5 @@
       damping="${motor_damp}"
       friction="${motor_fric}" />
   </joint>
+
 </robot>

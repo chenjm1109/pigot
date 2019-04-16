@@ -2,10 +2,6 @@ import numpy as np
 import math
 import tarj_data as td
 
-step_trip = 0.15
-offset = 0.5
-step_angle = math.pi / 6
-turn_para = 2
 l1 = 0.15
 l2 = 0.35
 l3 = 0.35
@@ -14,7 +10,7 @@ radio = 40
 
 def forward_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 1
+    rate = 2
     x_line, y_line, z_line = gait_line()
     for t in range(gait_data.shape[0]):
         if (t < 20):
@@ -32,31 +28,17 @@ def forward_gait():
             zf = z_line[t]
             zb = z_line[t - 20]
 
-        lf_theta1, lf_theta2, lf_theta3 = leg_ikine(xf, yf, zf)
-        rf_theta1, rf_theta2, rf_theta3 = leg_ikine(xb, yb, zb)
-        lb_theta1, lb_theta2, lb_theta3 = leg_ikine(xb, yb, zb)
-        rb_theta1, rb_theta2, rb_theta3 = leg_ikine(xf, yf, zf)
-
-        gait_data[t, 0] = lf_theta1
-        gait_data[t, 1] = lf_theta2
-        gait_data[t, 2] = lf_theta3
-
-        gait_data[t, 3] = rf_theta1
-        gait_data[t, 4] = rf_theta2
-        gait_data[t, 5] = rf_theta3
-
-        gait_data[t, 6] = lb_theta1
-        gait_data[t, 7] = lb_theta2
-        gait_data[t, 8] = lb_theta3
-
-        gait_data[t, 9] = rb_theta1
-        gait_data[t, 10] = rb_theta2
-        gait_data[t, 11] = rb_theta3
+        gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(xf, yf, zf)
+        gait_data[t, 3], gait_data[t, 4 ], gait_data[t, 5 ] = leg_ikine(xb, yb, zb)
+        gait_data[t, 6], gait_data[t, 7 ], gait_data[t, 8 ] = leg_ikine(xb, yb, zb)
+        gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(xf, yf, zf)
+        
     return rate, gait_data
+
 
 def backward_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 1
+    rate = 2
     x_line, y_line, z_line = gait_line()
     for t in range(gait_data.shape[0]):
         if (t < 20):
@@ -74,93 +56,56 @@ def backward_gait():
             zf = -z_line[t]
             zb = -z_line[t - 20]
 
-        lf_theta1, lf_theta2, lf_theta3 = leg_ikine(xf, yf, zf)
-        rf_theta1, rf_theta2, rf_theta3 = leg_ikine(xb, yb, zb)
-        lb_theta1, lb_theta2, lb_theta3 = leg_ikine(xb, yb, zb)
-        rb_theta1, rb_theta2, rb_theta3 = leg_ikine(xf, yf, zf)
-
-        gait_data[t, 0] = lf_theta1
-        gait_data[t, 1] = lf_theta2
-        gait_data[t, 2] = lf_theta3
-
-        gait_data[t, 3] = rf_theta1
-        gait_data[t, 4] = rf_theta2
-        gait_data[t, 5] = rf_theta3
-
-        gait_data[t, 6] = lb_theta1
-        gait_data[t, 7] = lb_theta2
-        gait_data[t, 8] = lb_theta3
-
-        gait_data[t, 9] = rb_theta1
-        gait_data[t, 10] = rb_theta2
-        gait_data[t, 11] = rb_theta3
+        gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(xf, yf, zf)
+        gait_data[t, 3], gait_data[t, 4 ], gait_data[t, 5 ] = leg_ikine(xb, yb, zb)
+        gait_data[t, 6], gait_data[t, 7 ], gait_data[t, 8 ] = leg_ikine(xb, yb, zb)
+        gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(xf, yf, zf)
     return rate, gait_data
 
 def turnleft_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 1
-    x_line1, x_line2, y_line1, y_line2, z_line = turn_line()
+    rate = 2
+    data = turn_line(1)
     for t in range(gait_data.shape[0]):
-        xf = x_line1[t]
-        xb = x_line2[t]
-        yf = y_line1[t]
-        yb = y_line2[t]
-        z = z_line[t]
-
-        lf_theta1, lf_theta2, lf_theta3 = leg_ikine(xf, yf, z)
-        rf_theta1, rf_theta2, rf_theta3 = leg_ikine(xb, yb, z)
-        lb_theta1, lb_theta2, lb_theta3 = leg_ikine(xb, yb, z)
-        rb_theta1, rb_theta2, rb_theta3 = leg_ikine(xf, yf, z)
-
-        gait_data[t, 0] = lf_theta1
-        gait_data[t, 1] = lf_theta2
-        gait_data[t, 2] = lf_theta3
-
-        gait_data[t, 3] = rf_theta1
-        gait_data[t, 4] = rf_theta2
-        gait_data[t, 5] = rf_theta3
-
-        gait_data[t, 6] = lb_theta1
-        gait_data[t, 7] = lb_theta2
-        gait_data[t, 8] = lb_theta3
-
-        gait_data[t, 9] = rb_theta1
-        gait_data[t, 10] = rb_theta2
-        gait_data[t, 11] = rb_theta3
+        gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(data[0, t], data[4, t], data[8, t])
+        gait_data[t, 3], gait_data[t, 4 ], gait_data[t, 5 ] = leg_ikine(data[1, t], data[5, t], data[9, t])
+        gait_data[t, 6], gait_data[t, 7 ], gait_data[t, 8 ] = leg_ikine(data[2, t], data[6, t], data[10, t])
+        gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(data[3, t], data[7, t], data[11, t])
     return rate, gait_data
 
 def turnright_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 1
-    x_line1, x_line2, y_line1, y_line2, z_line = turn_line()
+    rate = 2
+    data = turn_line(-1)
     for t in range(gait_data.shape[0]):
-        xf = x_line1[t]
-        xb = x_line2[t]
-        yf = y_line1[t]
-        yb = y_line2[t]
-        z = z_line[t]
-
-        lf_theta1, lf_theta2, lf_theta3 = leg_ikine(xb, yb, z)
-        rf_theta1, rf_theta2, rf_theta3 = leg_ikine(xf, yf, z)
-        lb_theta1, lb_theta2, lb_theta3 = leg_ikine(xf, yf, z)
-        rb_theta1, rb_theta2, rb_theta3 = leg_ikine(xb, yb, z)
-
-        gait_data[t, 0] = lf_theta1
-        gait_data[t, 1] = lf_theta2
-        gait_data[t, 2] = lf_theta3
-
-        gait_data[t, 3] = rf_theta1
-        gait_data[t, 4] = rf_theta2
-        gait_data[t, 5] = rf_theta3
-
-        gait_data[t, 6] = lb_theta1
-        gait_data[t, 7] = lb_theta2
-        gait_data[t, 8] = lb_theta3
-
-        gait_data[t, 9] = rb_theta1
-        gait_data[t, 10] = rb_theta2
-        gait_data[t, 11] = rb_theta3
+        gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(data[0, t], data[4, t], data[8, t])
+        gait_data[t, 3], gait_data[t, 4 ], gait_data[t, 5 ] = leg_ikine(data[1, t], data[5, t], data[9, t])
+        gait_data[t, 6], gait_data[t, 7 ], gait_data[t, 8 ] = leg_ikine(data[2, t], data[6, t], data[10, t])
+        gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(data[3, t], data[7, t], data[11, t])
     return rate, gait_data
+
+def slantleft_gait():
+    gait_data = np.zeros((radio, 12))
+    rate = 2
+    data = td.slantleft_gait(1)
+    for t in range(gait_data.shape[0]):
+        gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(data[0, t], data[2, t], data[4, t])
+        gait_data[t, 3], gait_data[t, 4 ], gait_data[t, 5 ] = leg_ikine(data[1, t], data[3, t], data[5, t])
+        gait_data[t, 6], gait_data[t, 7 ], gait_data[t, 8 ] = leg_ikine(data[1, t], data[3, t], data[5, t])
+        gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(data[0, t], data[2, t], data[4, t])
+    return rate, gait_data
+
+def slantright_gait():
+    gait_data = np.zeros((radio, 12))
+    rate = 2
+    data = td.slantleft_gait(-1)
+    for t in range(gait_data.shape[0]):
+        gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(data[0, t], data[2, t], data[4, t])
+        gait_data[t, 3], gait_data[t, 4 ], gait_data[t, 5 ] = leg_ikine(data[1, t], data[3, t], data[5, t])
+        gait_data[t, 6], gait_data[t, 7 ], gait_data[t, 8 ] = leg_ikine(data[1, t], data[3, t], data[5, t])
+        gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(data[0, t], data[2, t], data[4, t])
+    return rate, gait_data
+
 
 def jump_gait():
 
@@ -168,7 +113,7 @@ def jump_gait():
 
 def keep_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 1
+    rate = 2
     x_line, y_line, z_line = keep_line()
     for t in range(gait_data.shape[0]):
         if (t < 20):
@@ -186,26 +131,10 @@ def keep_gait():
             zf = z_line[t]
             zb = z_line[t - 20]
 
-        lf_theta1, lf_theta2, lf_theta3 = leg_ikine(xf, yf, zf)
-        rf_theta1, rf_theta2, rf_theta3 = leg_ikine(xb, yb, zb)
-        lb_theta1, lb_theta2, lb_theta3 = leg_ikine(xb, yb, zb)
-        rb_theta1, rb_theta2, rb_theta3 = leg_ikine(xf, yf, zf)
-
-        gait_data[t, 0] = lf_theta1
-        gait_data[t, 1] = lf_theta2
-        gait_data[t, 2] = lf_theta3
-
-        gait_data[t, 3] = rf_theta1
-        gait_data[t, 4] = rf_theta2
-        gait_data[t, 5] = rf_theta3
-
-        gait_data[t, 6] = lb_theta1
-        gait_data[t, 7] = lb_theta2
-        gait_data[t, 8] = lb_theta3
-
-        gait_data[t, 9] = rb_theta1
-        gait_data[t, 10] = rb_theta2
-        gait_data[t, 11] = rb_theta3
+        gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(xf, yf, zf)
+        gait_data[t, 3], gait_data[t, 4 ], gait_data[t, 5 ] = leg_ikine(xb, yb, zb)
+        gait_data[t, 6], gait_data[t, 7 ], gait_data[t, 8 ] = leg_ikine(xb, yb, zb)
+        gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(xf, yf, zf)
     return rate, gait_data
 
     
@@ -238,14 +167,9 @@ def keep_line():
     z_line = data[2, :]
     return x_line, y_line, z_line
 
-def turn_line():
-    data = td.turn_gait()
-    x_line1 = data[0, :]
-    x_line2 = data[1, :]
-    y_line1 = data[2, :]
-    y_line2 = data[3, :]
-    z_line = data[4, :]
-    return x_line1, x_line2, y_line1, y_line2, z_line
+def turn_line(direction):
+    data = td.turn_gait(direction)
+    return data
 
 def jump_line():
     xf_line = np.zeros((20))
