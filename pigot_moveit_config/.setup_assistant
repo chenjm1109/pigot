@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: pigot_description
+    relative_path: urdf/pigot.xacro
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/pigot.srdf
+  CONFIG:
+    author_name: JimCHAN
+    author_email: 522706601@qq.com
+    generated_timestamp: 1556021948

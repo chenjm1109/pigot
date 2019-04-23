@@ -104,8 +104,8 @@ def slantleft_gait(direction):
     slant_length = 0.05
     # Standard cycloidal equation.
     z, x = np.zeros(step_num / 2), np.zeros(step_num / 2)
-    E = 0.2 # step length
-    h = 0.2 # step height
+    E = 0.1 # step length
+    h = 0.05 # step height
     theta = np.linspace(0, 2 * math.pi, step_num / 2)
     for i in range(step_num / 2):
         z[i] = E * (theta[i] - math.sin(theta[i])) / (2 * math.pi)

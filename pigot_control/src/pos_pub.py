@@ -42,6 +42,8 @@ def command_analysis(action_command):
         rate, gait_np_data = ka.jump_gait()
     elif (action_command == 'k'):
         rate, gait_np_data = ka.keep_gait()
+    elif (action_command == 'c'):
+        rate, gait_np_data = ka.clam_gait()
     elif (action_command == 'q'):
         rate, gait_np_data = ka.slantleft_gait()
     elif (action_command == 'e'):

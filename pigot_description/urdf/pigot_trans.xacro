@@ -2,136 +2,56 @@
 
 <robot name="pigot" xmlns:xacro="http://www.ros.org/wiki/xacro">
   
-  <transmission name="lf_rot_1_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="lf_rot_1">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="lf_rot_1_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
 
-  <transmission name="lf_rot_2_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="lf_rot_2">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="lf_rot_2_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
+  <!-- Transmissions for ros_control -->
+  <xacro:macro name="transmission_block" params="joint_name">
+    <transmission name="trans1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${joint_name}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor1">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
 
-  <transmission name="lf_rot_3_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="lf_rot_3">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="lf_rot_3_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
+  <xacro:transmission_block joint_name="lf_rot_1"/>
+  <xacro:transmission_block joint_name="lf_rot_2"/>
+  <xacro:transmission_block joint_name="lf_rot_3"/>
+  <xacro:transmission_block joint_name="rf_rot_1"/>
+  <xacro:transmission_block joint_name="rf_rot_2"/>
+  <xacro:transmission_block joint_name="rf_rot_3"/>
+  <xacro:transmission_block joint_name="lb_rot_1"/>
+  <xacro:transmission_block joint_name="lb_rot_2"/>
+  <xacro:transmission_block joint_name="lb_rot_3"/>
+  <xacro:transmission_block joint_name="rb_rot_1"/>
+  <xacro:transmission_block joint_name="rb_rot_2"/>
+  <xacro:transmission_block joint_name="rb_rot_3"/>
 
-  <transmission name="rf_rot_1_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="rf_rot_1">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="rf_rot_1_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
 
-  <transmission name="rf_rot_2_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="rf_rot_2">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="rf_rot_2_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
+  <!-- Transmissions for ros_control -->
+  <xacro:macro name="transmission_block2" params="joint_name">
+    <transmission name="trans2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${joint_name}">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor2">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
 
-  <transmission name="rf_rot_3_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="rf_rot_3">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="rf_rot_3_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="lb_rot_1_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="lb_rot_1">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="lb_rot_1_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="lb_rot_2_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="lb_rot_2">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="lb_rot_2_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="lb_rot_3_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="lb_rot_3">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="lb_rot_3_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="rb_rot_1_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="rb_rot_1">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="rb_rot_1_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="rb_rot_2_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="rb_rot_2">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="rb_rot_2_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-
-  <transmission name="rb_rot_3_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="rb_rot_3">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="rb_rot_3_motor">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
+  <xacro:transmission_block2 joint_name="arm_rot_1"/>
+  <xacro:transmission_block2 joint_name="arm_rot_2"/>
+  <xacro:transmission_block2 joint_name="arm_rot_3"/>
+  <xacro:transmission_block2 joint_name="arm_rot_4"/>
+  <xacro:transmission_block2 joint_name="arm_rot_5"/>
+  <xacro:transmission_block2 joint_name="arm_rot_6"/>
+  <xacro:transmission_block2 joint_name="finger_pri_1"/>
+  <xacro:transmission_block2 joint_name="finger_pri_2"/>
 
 </robot>

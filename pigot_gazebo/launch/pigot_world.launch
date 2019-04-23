@@ -1,6 +1,7 @@
 <launch>
  
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="world_name" value="$(find pigot_gazebo)/worlds/pigot.world"/>
   <arg name="paused" default="true"/>
   <arg name="use_sim_time" default="true"/>
   <arg name="gui" default="true"/>
@@ -9,15 +10,13 @@
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find pigot_gazebo)/worlds/pigot.world"/>
+    <arg name="world_name" value="$(arg world_name)"/>
     <arg name="debug" value="$(arg debug)" />
     <arg name="gui" value="$(arg gui)" />
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     <arg name="headless" value="$(arg headless)"/>
   </include>
-
-  <group ns="pigot">
 
     <param name="robot_description" command="$(find xacro)/xacro --inorder $(find pigot_description)/urdf/pigot.xacro"/>
 
@@ -27,7 +26,7 @@
     <rosparam file="$(find pigot_control)/config/pigot_control.yaml" command="load"/>
 
     <!-- load the controllers -->
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" ns="/pigot"
     output="screen" args="joint_state_controller
                           joint1_position_controller
                           joint2_position_controller
@@ -40,21 +39,26 @@
                           joint9_position_controller
                           joint10_position_controller
                           joint11_position_controller
-                          joint12_position_controller"/>
+                          joint12_position_controller
+                          joint13_position_controller
+                          joint14_position_controller
+                          joint15_position_controller
+                          joint16_position_controller
+                          joint17_position_controller
+                          joint18_position_controller
+                          joint19_position_controller
+                          joint20_position_controller"/>
 
     <!-- convert joint states to TF transforms for rviz, etc -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
       <remap from="/joint_states" to="/pigot/joint_states" />
     </node>
-
     
     <!--node name="sbc_node" pkg="pigot_control" type="self_balance_control.py" respawn="true"/-->
-  </group>
-
 
   <node name="pos_pub_node" pkg="pigot_control" type="pos_pub.py" respawn="true"/>
   <node name="teleop_control_node" pkg="pigot_control" type="teleop_control.py" respawn="true"/>
-  <node name="rqt_plot_node" pkg="rqt_plot" type="rqt_plot" respawn="true"/>
+  <!--node name="rqt_plot_node" pkg="rqt_plot" type="rqt_plot" respawn="true"/-->
 
   <!--node name="rpy_pub_node" pkg="pigot_control" type="rpy_pub.py" respawn="true"/>
   <node name="sbc_node" pkg="pigot_control" type="self_balance_control.py" respawn="true"/-->

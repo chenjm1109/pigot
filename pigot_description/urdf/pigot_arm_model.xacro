@@ -1,0 +1,581 @@
+<?xml version="1.0" ?>
+<robot name="pigot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="motor_torque" value="500"/>
+  <xacro:property name="motor_torque2" value="1"/>
+  <xacro:property name="motor_vec" value="12.56"/>
+  <xacro:property name="motor_damp" value="0.1"/>
+  <xacro:property name="motor_fric" value="0.1"/>
+
+  <joint name="arm_base_joint" type="fixed">
+    <origin
+      xyz="0 -0.3 0.05"
+      rpy="0 0 0" />
+    <parent link="body_link" />
+    <child link="arm_base_link" />
+  </joint>
+
+  <link
+    name="arm_base_link">
+    <inertial>
+      <origin
+        xyz="1.3475E-34 0.045611 -1.2189E-18"
+        rpy="0 0 0" />
+      <mass
+        value="3.2045" />
+      <inertia
+        ixx="0.0078844"
+        ixy="0"
+        ixz="0"
+        iyy="0.01238"
+        iyz="0"
+        izz="0.0078844" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link
+    name="arm_link_1">
+    <inertial>
+      <origin
+        xyz="4.5445E-08 0.055988 -3.3733E-07"
+        rpy="0 0 0" />
+      <mass
+        value="1.9264" />
+      <inertia
+        ixx="0.0047546"
+        ixy="0"
+        ixz="0"
+        iyy="0.0039615"
+        iyz="0"
+        izz="0.0054808" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="arm_rot_1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.079989"
+      rpy="1.5708 -1.2246E-16 -3.1416" />
+    <parent
+      link="arm_base_link" />
+    <child
+      link="arm_link_1" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="${motor_torque}"
+      velocity="${motor_vec}" />
+    <dynamics
+      damping="${motor_damp}"
+      friction="${motor_fric}" />
+  </joint>
+
+  <link
+    name="arm_link_2">
+    <inertial>
+      <origin
+        xyz="4.1945E-10 0.2726 -9.6287E-12"
+        rpy="0 0 0" />
+      <mass
+        value="5.1205" />
+      <inertia
+        ixx="0.18641"
+        ixy="0"
+        ixz="0"
+        iyy="0.0046691"
+        iyz="0"
+        izz="0.18457" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="arm_rot_2"
+    type="revolute">
+    <origin
+      xyz="0 0.10001 0"
+      rpy="3.1416 0 3.1416" />
+    <parent
+      link="arm_link_1" />
+    <child
+      link="arm_link_2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="${motor_torque}"
+      velocity="${motor_vec}" />
+    <dynamics
+      damping="${motor_damp}"
+      friction="${motor_fric}" />
+  </joint>
+
+  <link
+    name="arm_link_3">
+    <inertial>
+      <origin
+        xyz="-3.4632E-18 0.28121 1.1102E-16"
+        rpy="0 0 0" />
+      <mass
+        value="4.0428" />
+      <inertia
+        ixx="0.13186"
+        ixy="0"
+        ixz="0"
+        iyy="0.0026352"
+        iyz="0"
+        izz="0.13085" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="arm_rot_3"
+    type="revolute">
+    <origin
+      xyz="0 0.6 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="arm_link_2" />
+    <child
+      link="arm_link_3" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.1415"
+      upper="1.5708"
+      effort="${motor_torque}"
+      velocity="${motor_vec}" />
+    <dynamics
+      damping="${motor_damp}"
+      friction="${motor_fric}" />
+  </joint>
+
+  <link
+    name="arm_link_4">
+    <inertial>
+      <origin
+        xyz="1.9004E-18 0.049824 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.14194" />
+      <inertia
+        ixx="0.00011174"
+        ixy="0"
+        ixz="0"
+        iyy="0.00011174"
+        iyz="0"
+        izz="0.00011749" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="arm_rot_4"
+    type="revolute">
+    <origin
+      xyz="0 0.56 0"
+      rpy="0 0 0" />
+    <parent
+      link="arm_link_3" />
+    <child
+      link="arm_link_4" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.1415"
+      upper="3.1415"
+      effort="${motor_torque2}"
+      velocity="${motor_vec}" />
+    <dynamics
+      damping="${motor_damp}"
+      friction="${motor_fric}" />
+  </joint>
+
+  <link
+    name="arm_link_5">
+    <inertial>
+      <origin
+        xyz="-1.1102E-16 -0.014377 -2.4389E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.093662" />
+      <inertia
+        ixx="3.295E-05"
+        ixy="0"
+        ixz="0"
+        iyy="2.0685E-05"
+        iyz="0"
+        izz="3.7289E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="arm_rot_5"
+    type="revolute">
+    <origin
+      xyz="0 0.08 0"
+      rpy="-1.5708 0 1.5708" />
+    <parent
+      link="arm_link_4" />
+    <child
+      link="arm_link_5" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.1415"
+      upper="0"
+      effort="${motor_torque2}"
+      velocity="${motor_vec}" />
+    <dynamics
+      damping="${motor_damp}"
+      friction="${motor_fric}" />
+  </joint>
+
+  <link
+    name="arm_link_6">
+    <inertial>
+      <origin
+        xyz="-2.2204E-16 -0.017582 -6.0852E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.064062" />
+      <inertia
+        ixx="4.4304E-05"
+        ixy="0"
+        ixz="0"
+        iyy="4.6087E-05"
+        iyz="0"
+        izz="6.4353E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/arm_link_6.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="arm_rot_6"
+    type="revolute">
+    <origin
+      xyz="0 -0.025 0"
+      rpy="0 0 0" />
+    <parent
+      link="arm_link_5" />
+    <child
+      link="arm_link_6" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.1415"
+      upper="3.1415"
+      effort="${motor_torque2}"
+      velocity="${motor_vec}" />
+    <dynamics
+      damping="${motor_damp}"
+      friction="${motor_fric}" />
+  </joint>
+
+  <link
+    name="finger_link_1">
+    <inertial>
+      <origin
+        xyz="0.0022619 0.033929 -1.1102E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.017522" />
+      <inertia
+        ixx="8.7174E-06"
+        ixy="1.1268E-07"
+        ixz="0"
+        iyy="1.347E-06"
+        iyz="0"
+        izz="7.4361E-06" />
+    </inertial>
+      <!--inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001" />
+    </inertial-->
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/finger_link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/finger_link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="finger_pri_1"
+    type="prismatic">
+    <origin
+      xyz="0 -0.025 -0.045"
+      rpy="3.1416 1.5708 0" />
+    <parent
+      link="arm_link_6" />
+    <child
+      link="finger_link_1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="0.04"
+      effort="${motor_torque2}"
+      velocity="${motor_vec}" />
+    <dynamics
+      damping="${motor_damp}"
+      friction="${motor_fric}" />
+  </joint>
+
+  <link
+    name="finger_link_2">
+    <inertial>
+      <origin
+        xyz="0.0022619 0.033929 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.017522" />
+      <inertia
+        ixx="8.7174E-06"
+        ixy="1.1268E-07"
+        ixz="0"
+        iyy="1.347E-06"
+        iyz="0"
+        izz="7.4361E-06" />
+    </inertial>
+      <!--inertia
+        ixx="0.001"
+        ixy="0"
+        ixz="0"
+        iyy="0.001"
+        iyz="0"
+        izz="0.001" />
+    </inertial-->
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/finger_link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://pigot_stl_model/meshes/finger_link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="finger_pri_2"
+    type="prismatic">
+    <origin
+      xyz="0 -0.025 0.045"
+      rpy="3.1416 -1.5708 0" />
+    <parent
+      link="arm_link_6" />
+    <child
+      link="finger_link_2" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="0.04"
+      effort="${motor_torque2}"
+      velocity="${motor_vec}" />
+    <mimic
+      joint="finger_pri_1"/>
+    <dynamics
+      damping="${motor_damp}"
+      friction="${motor_fric}" />
+  </joint>
+
+</robot>

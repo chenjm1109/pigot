@@ -6,11 +6,11 @@ l1 = 0.15
 l2 = 0.35
 l3 = 0.35
 radio = 40
+rate = 2
 
 
 def forward_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 2
     x_line, y_line, z_line = gait_line()
     for t in range(gait_data.shape[0]):
         if (t < 20):
@@ -38,7 +38,6 @@ def forward_gait():
 
 def backward_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 2
     x_line, y_line, z_line = gait_line()
     for t in range(gait_data.shape[0]):
         if (t < 20):
@@ -64,7 +63,6 @@ def backward_gait():
 
 def turnleft_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 2
     data = turn_line(1)
     for t in range(gait_data.shape[0]):
         gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(data[0, t], data[4, t], data[8, t])
@@ -75,7 +73,6 @@ def turnleft_gait():
 
 def turnright_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 2
     data = turn_line(-1)
     for t in range(gait_data.shape[0]):
         gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(data[0, t], data[4, t], data[8, t])
@@ -86,7 +83,6 @@ def turnright_gait():
 
 def slantleft_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 2
     data = td.slantleft_gait(1)
     for t in range(gait_data.shape[0]):
         gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(data[0, t], data[2, t], data[4, t])
@@ -97,7 +93,6 @@ def slantleft_gait():
 
 def slantright_gait():
     gait_data = np.zeros((radio, 12))
-    rate = 2
     data = td.slantleft_gait(-1)
     for t in range(gait_data.shape[0]):
         gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(data[0, t], data[2, t], data[4, t])
@@ -137,6 +132,31 @@ def keep_gait():
         gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(xf, yf, zf)
     return rate, gait_data
 
+def clam_gait():
+    gait_data = np.zeros((radio, 12))
+    rate = 2
+    x_line, y_line, z_line = keep_line()
+    for t in range(gait_data.shape[0]):
+        if (t < 20):
+            xf = 0.4
+            xb = 0
+            yf = 0.15
+            yb = 0.15
+            zf = 0.1
+            zb = 0.1
+        else:
+            xf = 0.4
+            xb = 0
+            yf = 0.15
+            yb = 0.15
+            zf = 0.1
+            zb = 0.1
+
+        gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(xf, yf, zf)
+        gait_data[t, 3], gait_data[t, 4 ], gait_data[t, 5 ] = leg_ikine(xb, yb, zb)
+        gait_data[t, 6], gait_data[t, 7 ], gait_data[t, 8 ] = leg_ikine(xb, yb, zb)
+        gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(xf, yf, zf)
+    return rate, gait_data
     
 def leg_ikine(x, y, z):  
     theta1 = math.atan2(y, x) + math.atan2(l1, -(x**2 + y**2 - l1**2)**0.5)

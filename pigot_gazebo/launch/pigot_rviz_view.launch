@@ -1,0 +1,13 @@
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find pigot_description)/urdf/pigot.xacro"/>
+
+    <param name="use_gui" value="true"/>
+    
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model pigot -param robot_description"/>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pigot_description)/urdf/pigot.rviz"/>
+</launch>

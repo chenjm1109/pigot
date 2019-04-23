@@ -10,8 +10,8 @@
     </plugin>
   </gazebo>
 
-  <!-- IMU plugin for 'body_link' -->
-  <gazebo reference="body_link">
+  <!-- IMU plugin for 'imu_link' -->
+  <gazebo reference="laser_link">
     <gravity>true</gravity>
     <sensor name="imu_sensor" type="imu">
       <always_on>true</always_on>
@@ -19,8 +19,8 @@
       <visualize>true</visualize>
       <topic>__default_topic__</topic>
       <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-        <topicName>imu</topicName>
-        <bodyName>body_link</bodyName>
+        <topicName>/imu</topicName>
+        <bodyName>laser_link</bodyName>
         <updateRateHZ>100.0</updateRateHZ>
         <gaussianNoise>0.0</gaussianNoise>
         <xyzOffset>0 0 0</xyzOffset>
@@ -31,6 +31,38 @@
     </sensor>
   </gazebo>
 
+  <!-- laser plugin for 'laser_link' -->
+  <gazebo reference="laser_link">
+      <sensor type="ray" name="rplidar">
+          <pose>0 0 0 0 0 0</pose>
+          <visualize>false</visualize>
+          <update_rate>5.5</update_rate>
+          <ray>
+              <scan>
+                <horizontal>
+                  <samples>360</samples>
+                  <resolution>1</resolution>
+                  <min_angle>-3</min_angle>
+                  <max_angle>3</max_angle>
+                </horizontal>
+              </scan>
+              <range>
+                <min>0.10</min>
+                <max>10.0</max>
+                <resolution>0.01</resolution>
+              </range>
+              <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>0.01</stddev>
+              </noise>
+          </ray>
+          <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
+              <topicName>/scan</topicName>
+              <frameName>laser_link</frameName>
+          </plugin>
+      </sensor>
+  </gazebo>
 
   <gazebo reference="lf_rot_1">
     <implicitSpringDamper>1</implicitSpringDamper>
@@ -77,6 +109,34 @@
   </gazebo>
 
   <gazebo reference="rb_rot_3">
+    <implicitSpringDamper>1</implicitSpringDamper>
+  </gazebo>
+
+  <gazebo reference="arm_rot_1">
+    <implicitSpringDamper>1</implicitSpringDamper>
+  </gazebo>
+
+  <gazebo reference="arm_rot_2">
+    <implicitSpringDamper>1</implicitSpringDamper>
+  </gazebo>
+
+  <gazebo reference="arm_rot_3">
+    <implicitSpringDamper>1</implicitSpringDamper>
+  </gazebo>
+
+  <gazebo reference="arm_rot_4">
+    <implicitSpringDamper>1</implicitSpringDamper>
+  </gazebo>
+
+  <gazebo reference="arm_rot_5">
+    <implicitSpringDamper>1</implicitSpringDamper>
+  </gazebo>
+
+  <gazebo reference="arm_rot_6">
+    <implicitSpringDamper>1</implicitSpringDamper>
+  </gazebo>
+
+  <gazebo reference="finger_pri_1">
     <implicitSpringDamper>1</implicitSpringDamper>
   </gazebo>
 

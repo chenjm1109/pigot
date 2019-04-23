@@ -1,8 +1,8 @@
-
+pigot:
   # Publish all joint states -----------------------------------
   joint_state_controller:
     type: joint_state_controller/JointStateController
-    publish_rate: 100  
+    publish_rate: 300  
   
   # Position Controllers ---------------------------------------
   joint1_position_controller:
@@ -65,6 +65,45 @@
     joint: rb_rot_3
     pid: {p: 5000.0, i: 0.01, d: 100.0}
 
+  joint13_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: arm_rot_1
+    pid: {p: 5000.0, i: 0.01, d: 100.0}
+
+  joint14_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: arm_rot_2
+    pid: {p: 5000.0, i: 0.01, d: 100.0}
+
+  joint15_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: arm_rot_3
+    pid: {p: 5000.0, i: 0.01, d: 100.0}
+
+  joint16_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: arm_rot_4
+    pid: {p: 5000.0, i: 0.01, d: 100.0}
+
+  joint17_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: arm_rot_5
+    pid: {p: 5000.0, i: 0.01, d: 100.0}
+
+  joint18_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: arm_rot_6
+    pid: {p: 5000.0, i: 0.01, d: 100.0}
+
+  joint19_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: finger_pri_1
+    pid: {p: 5000.0, i: 0.01, d: 100.0}
+
+  joint20_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: finger_pri_2
+    pid: {p: 5000.0, i: 0.01, d: 100.0}
 
 
 #gazebo_ros_control/pid_gains:
