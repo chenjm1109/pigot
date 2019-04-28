@@ -110,8 +110,8 @@
     <axis
       xyz="0 1 0" />
     <limit
-      lower="-3.1415926"
-      upper="3.1415926"
+      lower="-3.1415"
+      upper="3.1415"
       effort="${motor_torque}"
       velocity="${motor_vec}" />
     <dynamics

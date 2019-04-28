@@ -65,17 +65,22 @@
       <remap from="/joint_states" to="/pigot/joint_states" />
     </node>
     
+    <!--node name="sbc_node" pkg="pigot_control" type="self_balance_control.py" respawn="true"/-->
     
-<!--     <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" -->
-<!--        name="laser_scan_matcher_node" output="screen">-->
+     <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" 
+        name="laser_scan_matcher_node" output="screen">
 
-<!--        <param name="fixed_frame" value="odom"/>-->
-<!--        <param name="base_frame" value="base_link"/>-->
-<!--        <param name="max_iterations" value="10"/>-->
-<!--        <param name="use_imu" value="true"/>-->
-<!--        <param name="kf_dist_angular" value="0.001"/>-->
-<!--        <param name="kf_dist_linear" value="0.001"/>-->
-<!--        <param name="outliers_maxPerc" value="0.9"/>-->
-<!--    </node>-->
+        <param name="fixed_frame" value="odom"/>
+        <param name="base_frame" value="base_link"/>
+        <param name="max_iterations" value="10"/>
+        <param name="use_imu" value="true"/>
+        <param name="kf_dist_angular" value="0.001"/>
+        <param name="kf_dist_linear" value="0.001"/>
+        <param name="outliers_maxPerc" value="0.9"/>
+    </node>
 
+  <!--node name="rqt_plot_node" pkg="rqt_plot" type="rqt_plot" respawn="true"/-->
+
+  <!--node name="rpy_pub_node" pkg="pigot_control" type="rpy_pub.py" respawn="true"/>
+  <node name="sbc_node" pkg="pigot_control" type="self_balance_control.py" respawn="true"/-->
 </launch>

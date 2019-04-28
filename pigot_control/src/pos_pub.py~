@@ -30,7 +30,7 @@ def action_pub(gait_data, data_length):
     return
 
 def command_analysis(action_command):
-    
+    rate = 2
     if (action_command == 'w'):
         rate, gait_np_data = ka.forward_gait()
     elif (action_command == 's'):

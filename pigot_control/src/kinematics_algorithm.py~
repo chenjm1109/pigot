@@ -29,10 +29,10 @@ def forward_gait():
             zf = z_line[t]
             zb = z_line[t - 20]
 
-        gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(xf, yf + 0.15, zf)
-        gait_data[t, 3], gait_data[t, 4 ], gait_data[t, 5 ] = leg_ikine(xb, -yb + 0.15, zb)
-        gait_data[t, 6], gait_data[t, 7 ], gait_data[t, 8 ] = leg_ikine(xb, -yb + 0.15, zb)
-        gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(xf, yf + 0.15, zf)
+        gait_data[t, 0], gait_data[t, 1 ], gait_data[t, 2 ] = leg_ikine(xf, yf + 0.1, zf)
+        gait_data[t, 3], gait_data[t, 4 ], gait_data[t, 5 ] = leg_ikine(xb, -yb + 0.1, zb)
+        gait_data[t, 6], gait_data[t, 7 ], gait_data[t, 8 ] = leg_ikine(xb, -yb + 0.1, zb)
+        gait_data[t, 9], gait_data[t, 10], gait_data[t, 11] = leg_ikine(xf, yf + 0.1, zf)
         
     return rate, gait_data
 
