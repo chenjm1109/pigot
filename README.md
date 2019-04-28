@@ -9,14 +9,9 @@ Example quadruped robots code for Gazebo with ROS
 [ROS URDF](http://gazebosim.org/tutorials/?tut=ros_urdf)
 
 ## Quick Start
-
-Gazebo:
-
-    roslaunch pigot_gazebo pigot_world.launch
-
-ROS Control:
-
-    roslaunch pigot_control teleop_control.launch
+    roslaunch pigot_gazebo pigot_world_moveit
+    rosrun pigot_control pigot_controller.py 
+    rosrun pigot_control teleop_controller.py 
 
 ## Note
 
